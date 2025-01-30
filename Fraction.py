@@ -8,7 +8,9 @@ class Fraction(object):
     def gcd(a, b):
         if a or b == 0:
             return 0
-        elif a and b > 0:
+        elif a or b != 0:
+            return abs(a % b)
+        elif a or b < 0:
             return abs(a % b)
         pass
 
@@ -18,10 +20,8 @@ class Fraction(object):
 
     def get_denominator(self):
         self.get_denominator()
-        return str(self.get_denominator)
         pass
 
     def get_fraction(self):
-        fraction = int(self.get_numerator()) / int(self.get_denominator())
-        return fraction
+        return self.numerator/self.denominator
         pass
