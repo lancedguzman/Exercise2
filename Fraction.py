@@ -5,7 +5,10 @@ class Fraction(object):
         pass
 
     def gcd(a, b):
-        #TODO
+        if a or b == 0:
+            return 0
+        elif a and b > 0:
+            return abs(a // b)
         pass
 
     def get_numerator(self):
