@@ -1,5 +1,16 @@
 class Fraction():
+    """This python file implements an euclidean algorithm to find
+    the gcd of two integers and also reduces a fraction into its
+    simplest form.
+
+    Authors : Lance De Guzman, Mishka Sy
+    """
     def __init__(self, numerator=0, denominator=1):
+        """Checks the fraction, its numerator, and its denominator
+
+        Searches through the input to check if its a int, string, or float.
+        It also checks if the input has a negative sign or trailing whitespaces.
+        """
         if isinstance(numerator, float) or isinstance(denominator, float):
             self.numerator = 0
             self.denominator = 1
@@ -12,7 +23,8 @@ class Fraction():
                 if len(parts) == 2:
                     numerator_part = parts[0]
                     denominator_part = parts[1]
-                    if numerator_part.lstrip('-').isdigit() and denominator_part.lstrip('-').isdigit():
+                    if (numerator_part.lstrip('-').isdigit() and
+                            denominator_part.lstrip('-').isdigit()):
                         numerator = int(numerator_part)
                         denominator = int(denominator_part)
                     else:
@@ -37,8 +49,6 @@ class Fraction():
                 self.numerator = 0
                 self.denominator = 1
                 return
-            else:
-                denominator = int(denominator)
 
         if denominator == 0:
             raise ZeroDivisionError
@@ -46,7 +56,9 @@ class Fraction():
         self.numerator = numerator
         self.denominator = denominator
 
-        common_divisor = Fraction.gcd(abs(self.numerator), abs(self.denominator))
+        common_divisor = Fraction.gcd(
+            abs(self.numerator), abs(self.denominator))
+
         if common_divisor != 0:
             self.numerator //= common_divisor
             self.denominator //= common_divisor
@@ -56,6 +68,11 @@ class Fraction():
             self.denominator = -self.denominator
 
     def gcd(a, b):
+        """Finds the gcd of two integers.
+
+        Switches the two integers, a and b, then gets their gcd
+        using the euclidean algorithm.
+        """
         if a == 0 or b == 0:
             return 0
         a, b = abs(a), abs(b)
@@ -64,15 +81,18 @@ class Fraction():
         return a
 
     def get_numerator(self):
+        """Returns the numerator as a string."""
         return str(self.numerator)
 
     def get_denominator(self):
+        """Returns the denominator as a string."""
         return str(self.denominator)
 
     def get_fraction(self):
+        """Returns the fraction as a string."""
         if self.numerator == 0:
             return "0"
-        elif self.denominator == 1:
+        if self.denominator == 1:
             return str(self.numerator)
-        else:
-            return f"{self.numerator}/{self.denominator}"
+
+        return f"{self.numerator}/{self.denominator}"
